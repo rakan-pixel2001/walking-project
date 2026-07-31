@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تطبيق تتبع الخطوات والنشاط البدني</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<div class="container">
+<header>
+<h1><i class="fa-solid fa-person-walking"></i> متعقب النشاط البدني</h1>
+<p>تتبع خطواتك وسعراتك الحرارية بسهولة</p>
+</header>
+
+<main>
+<div class="card counter-card">
+<h2>عدد الخطوات</h2>
+<div class="step-display" id="stepCount">0</div>
+<p class="goal">الهدف اليومي: 10,000 خطوة</p>
+</div>
+
+<div class="stats-grid">
+<div class="card stat-item">
+<i class="fa-solid fa-fire icon-fire"></i>
+<span class="stat-value" id="calories">0</span>
+<span class="stat-label">سعرة حرارية</span>
+</div>
+<div class="card stat-item">
+<i class="fa-solid fa-route icon-route"></i>
+<span class="stat-value" id="distance">0</span>
+<span class="stat-label">كيلومتر</span>
+</div>
+</div>
+
+<div class="controls">
+<button id="startBtn" class="btn btn-primary"><i class="fa-solid fa-play"></i> بدء التتبع</button>
+<button id="resetBtn" class="btn btn-secondary"><i class="fa-solid fa-rotate-right"></i> إعادة ضبط</button>
+</div>
+
+<div id="permissionNotice" class="notice warning hidden">
+يرجى السماح بـ (مستشعر الحركة Motion Sensor) في هاتفك للبدء بالعد.
+</div>
+</main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
 
