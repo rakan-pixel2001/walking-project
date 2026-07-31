@@ -8,10 +8,56 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-<div class="container">
+
+<!-- صفحة البداية لتسجيل البيانات -->
+<div id="welcomePage" class="welcome-screen">
+<div class="welcome-card">
+<!-- الشعارين في الأعلى -->
+<div class="logos-header">
+<img src="logo2.png" alt="برنامج المدن الصحية" class="header-logo logo-left">
+<img src="logo1.png" alt="إدارة مدينة الملك عبدالعزيز العسكرية" class="header-logo logo-right">
+</div>
+
+<h2><i class="fa-solid fa-user-check"></i> مرحباً بك</h2>
+<p>يرجى إدخال بياناتك لبدء تتبع نشاطك البدني</p>
+
+<form id="userForm">
+<div class="input-group">
+<label>الاسم الكامل</label>
+<input type="text" id="userName" placeholder="أدخل اسمك" required>
+</div>
+
+<div class="input-group">
+<label>العمر</label>
+<input type="number" id="userAge" placeholder="أدخل عمرك" min="5" max="120" required>
+</div>
+
+<div class="input-group">
+<label>الجنس</label>
+<select id="userGender" required>
+<option value="" disabled selected>اختر الجنس</option>
+<option value="ذكر">ذكر</option>
+<option value="أنثى">أنثى</option>
+</select>
+</div>
+
+<button type="submit" class="btn btn-primary btn-full">دخول وابدأ التتبع</button>
+</form>
+</div>
+</div>
+
+<!-- الصفحة الرئيسية للتطبيق -->
+<div id="appContainer" class="container hidden">
+<!-- الشعارين في الأعلى بالصفحة الرئيسية -->
+<div class="logos-header app-logos">
+<img src="logo2.png" alt="برنامج المدن الصحية" class="header-logo logo-left">
+<img src="logo1.png" alt="إدارة مدينة الملك عبدالعزيز العسكرية" class="header-logo logo-right">
+</div>
+
 <header>
 <h1><i class="fa-solid fa-person-walking"></i> متعقب النشاط البدني</h1>
-<p>تتبع خطواتك وسعراتك الحرارية بسهولة</p>
+<p id="welcomeMessage">تتبع خطواتك وسعراتك الحرارية بسهولة</p>
+<button id="editProfileBtn" class="btn-small"><i class="fa-solid fa-user-pen"></i> تعديل البيانات</button>
 </header>
 
 <main>
@@ -39,14 +85,14 @@
 <button id="resetBtn" class="btn btn-secondary"><i class="fa-solid fa-rotate-right"></i> إعادة ضبط</button>
 </div>
 
-<div id="permissionNotice" class="notice warning hidden">
-يرجى السماح بـ (مستشعر الحركة Motion Sensor) في هاتفك للبدء بالعد.
-</div>
+<!-- حقوق الملكية والتطوير -->
+<footer class="app-footer">
+Made by Rakan Alenzi
+</footer>
 </main>
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
-
 
