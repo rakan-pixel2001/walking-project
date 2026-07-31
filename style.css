@@ -1,4 +1,4 @@
-
+:root {
 --primary-color: #2ecc71;
 --secondary-color: #e74c3c;
 --bg-color: #f4f7f6;
@@ -22,7 +22,6 @@ align-items: flex-start;
 min-height: 100vh;
 }
 
-/* حاوية الصفحة لمنع التشتت والترتيب العمودي الصحيح */
 .main-wrapper {
 width: 100%;
 max-width: 400px;
@@ -31,18 +30,18 @@ flex-direction: column;
 align-items: center;
 }
 
-/* الشعارين في الأعلى بحجم ممتاز وواضح */
+/* الشعارين في الأعلى */
 .logos-header {
 display: flex;
 justify-content: space-between;
 align-items: center;
 width: 100%;
-margin-bottom: 20px;
+margin-bottom: 15px;
 padding: 0 5px;
 }
 
 .header-logo {
-height: 65px;
+height: 55px;
 width: auto;
 max-width: 45%;
 object-fit: contain;
@@ -100,7 +99,7 @@ margin-top: 10px;
 }
 
 header h1 {
-font-size: 1.4rem;
+font-size: 1.3rem;
 color: #2c3e50;
 margin: 5px 0;
 }
@@ -161,23 +160,38 @@ font-size: 0.8rem;
 color: #7f8c8d;
 }
 
+/* الأزرار العريضة في الأسفل */
 .controls {
 display: flex;
 gap: 10px;
+margin-top: 10px;
+width: 100%;
 }
 
 .btn {
 flex: 1;
-padding: 12px;
+padding: 14px;
 border: none;
-border-radius: 10px;
-font-size: 0.95rem;
+border-radius: 12px;
+font-size: 1rem;
 font-weight: bold;
 cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
 }
 
-.btn-primary { background-color: var(--primary-color); color: white; }
-.btn-secondary { background-color: #95a5a6; color: white; }
+/* إصلاح لون أزرار التتبع والإعادة لضمان الظهور دائماً */
+.btn-primary, #startBtn {
+background-color: #2ecc71 !important;
+color: #ffffff !important;
+}
+
+.btn-secondary, #resetBtn {
+background-color: #95a5a6 !important;
+color: #ffffff !important;
+}
 
 /* الحقوق بالأسفل */
 .app-footer {
