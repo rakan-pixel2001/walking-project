@@ -1,102 +1,160 @@
-:root {
---primary-color: #2ecc71;
---secondary-color: #e74c3c;
---bg-color: #f4f7f6;
---card-bg: #ffffff;
---text-color: #2c3e50;
+let stepCount = 0;
+let lastMilestone = 0;
+let isTracking = false;
+let lastAcceleration = { x: 0, y: 0, z: 0 };
+const threshold = 11;
+
+// العناصر
+const welcomePage = document.getElementById('welcomePage');
+const appContainer = document.getElementById('appContainer');
+const userForm = document.getElementById('userForm');
+const welcomeMessage = document.getElementById('welcomeMessage');
+const editProfileBtn = document.getElementById('editProfileBtn');
+
+const stepDisplay = document.getElementById('stepCount');
+const caloriesDisplay = document.getElementById('calories');
+const distanceDisplay = document.getElementById('distance');
+const startBtn = document.getElementById('startBtn');
+const resetBtn = document.getElementById('resetBtn');
+
+// عبارات تحفيزية لكل 2000 خطوة
+const motivationalMessages = [
+"مذهل! أنجزت 2,000 خطوة. استمر في التحرك! 👏",
+"رائع جداً! 4,000 خطوة، لياقتك تزيد يوماً بعد يوم! 💪",
+"عمل ممتاز! 6,000 خطوة، اقتربت جداً من هدفك! 🔥",
+"إنجاز بطل! 8,000 خطوة، خطوات قليلة وتصل للقمة! 🏃‍♂️",
+"ألف مبروك! حققت هدفك اليومي بكفاءة عالية (10,000 خطوة)! 🎉"
+];
+
+// التحقق عند تحميل الصفحة
+window.addEventListener('load', () => {
+checkUserData();
+requestNotificationPermission();
+});
+
+function checkUserData() {
+const userData = JSON.parse(localStorage.getItem('userData'));
+if (userData) {
+welcomePage.classList.add('hidden');
+appContainer.classList.remove('hidden');
+welcomeMessage.innerText = `مرحباً بك يا ${userData.name}! 👋`;
+} else {
+welcomePage.classList.remove('hidden');
+appContainer.classList.add('hidden');
+}
 }
 
-body {
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-background-color: var(--bg-color);
-color: var(--text-color);
-margin: 0;
-padding: 20px;
-display: flex;
-justify-content: center;
+// حفظ بيانات الحساب من صفحة البداية
+userForm.addEventListener('submit', (e) => {
+e.preventDefault();
+const userData = {
+name: document.getElementById('userName').value,
+age: document.getElementById('userAge').value,
+gender: document.getElementById('userGender').value
+};
+localStorage.setItem('userData', JSON.stringify(userData));
+checkUserData();
+});
+
+// العودة لصفحة البيانات لتعديلها
+editProfileBtn.addEventListener('click', () => {
+const userData = JSON.parse(localStorage.getItem('userData'));
+if(userData) {
+document.getElementById('userName').value = userData.name;
+document.getElementById('userAge').value = userData.age;
+document.getElementById('userGender').value = userData.gender;
+}
+welcomePage.classList.remove('hidden');
+appContainer.classList.add('hidden');
+});
+
+function requestNotificationPermission() {
+if ("Notification" in window && Notification.permission !== "granted") {
+Notification.requestPermission();
+}
 }
 
-.container {
-max-width: 400px;
-width: 100%;
-text-align: center;
+// زر الحركة والتتبع
+startBtn.addEventListener('click', async () => {
+if (!isTracking) {
+if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+try {
+const response = await DeviceMotionEvent.requestPermission();
+if (response === 'granted') {
+startTracking();
+} else {
+alert("تم رفض الوصول لحساسات الحركة.");
+}
+} catch (error) {
+console.error(error);
+}
+} else {
+startTracking();
+}
+} else {
+stopTracking();
+}
+});
+
+function startTracking() {
+isTracking = true;
+startBtn.innerHTML = '<i class="fa-solid fa-pause"></i> إيقاف مؤقت';
+startBtn.style.backgroundColor = '#e74c3c';
+window.addEventListener('devicemotion', handleMotion);
 }
 
-header h1 {
-font-size: 1.5rem;
-color: #2c3e50;
+function stopTracking() {
+isTracking = false;
+startBtn.innerHTML = '<i class="fa-solid fa-play"></i> استئناف';
+startBtn.style.backgroundColor = '#2ecc71';
+window.removeEventListener('devicemotion', handleMotion);
 }
 
-.card {
-background: var(--card-bg);
-border-radius: 15px;
-padding: 20px;
-margin-bottom: 15px;
-box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+function handleMotion(event) {
+const acc = event.accelerationIncludingGravity;
+if (!acc) return;
+
+let deltaX = Math.abs(acc.x - lastAcceleration.x);
+let deltaY = Math.abs(acc.y - lastAcceleration.y);
+let deltaZ = Math.abs(acc.z - lastAcceleration.z);
+
+if ((deltaX + deltaY + deltaZ) > threshold) {
+stepCount++;
+updateUI();
+checkStepMilestones();
 }
 
-.step-display {
-font-size: 4rem;
-font-weight: bold;
-color: var(--primary-color);
-margin: 10px 0;
+lastAcceleration = { x: acc.x, y: acc.y, z: acc.z };
 }
 
-.stats-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 15px;
+// تنبيهات الـ 2000 خطوة
+function checkStepMilestones() {
+if (stepCount >= lastMilestone + 2000) {
+lastMilestone = Math.floor(stepCount / 2000) * 2000;
+let messageIndex = (lastMilestone / 2000) - 1;
+let message = motivationalMessages[messageIndex] || `إنجاز رائع! أنجزت ${stepCount} خطوة! 🌟`;
+
+showNotification("تنبيه النشاط البدني 🏃", message);
+}
 }
 
-.stat-item {
-display: flex;
-flex-direction: column;
-align-items: center;
+function showNotification(title, body) {
+if ("Notification" in window && Notification.permission === "granted") {
+new Notification(title, { body: body });
+} else {
+alert(`${title}\n${body}`);
+}
 }
 
-.stat-item i {
-font-size: 1.5rem;
-margin-bottom: 5px;
+function updateUI() {
+stepDisplay.innerText = stepCount;
+caloriesDisplay.innerText = (stepCount * 0.04).toFixed(1);
+distanceDisplay.innerText = (stepCount * 0.00078).toFixed(2);
 }
 
-.icon-fire { color: #e67e22; }
-.icon-route { color: #3498db; }
-
-.stat-value {
-font-size: 1.5rem;
-font-weight: bold;
-}
-
-.stat-label {
-font-size: 0.85rem;
-color: #7f8c8d;
-}
-
-.controls {
-display: flex;
-gap: 10px;
-}
-
-.btn {
-flex: 1;
-padding: 12px;
-border: none;
-border-radius: 10px;
-font-size: 1rem;
-cursor: pointer;
-transition: 0.3s;
-}
-
-.btn-primary { background-color: var(--primary-color); color: white; }
-.btn-secondary { background-color: #95a5a6; color: white; }
-
-.notice {
-margin-top: 15px;
-padding: 10px;
-border-radius: 8px;
-font-size: 0.85rem;
-}
-.warning { background: #ffeaa7; color: #d63031; }
-.hidden { display: none; }
-
+resetBtn.addEventListener('click', () => {
+stepCount = 0;
+lastMilestone = 0;
+updateUI();
+});
 
