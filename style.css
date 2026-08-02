@@ -24,26 +24,26 @@ min-height: 100vh;
 
 .main-wrapper {
 width: 100%;
-max-width: 400px;
+max-width: 420px;
 display: flex;
 flex-direction: column;
 align-items: center;
 }
 
-/* الشعارين في الأعلى */
+/* الشعارين في الأعلى بحجم أكبر ومتناسق */
 .logos-header {
 display: flex;
 justify-content: space-between;
 align-items: center;
 width: 100%;
-margin-bottom: 15px;
+margin-bottom: 20px;
 padding: 0 5px;
 }
 
 .header-logo {
-height: 55px;
+height: 90px; /* تم تكبير الارتفاع من 55px إلى 90px */
 width: auto;
-max-width: 45%;
+max-width: 48%;
 object-fit: contain;
 }
 
@@ -182,7 +182,6 @@ justify-content: center;
 gap: 8px;
 }
 
-/* إصلاح لون أزرار التتبع والإعادة لضمان الظهور دائماً */
 .btn-primary, #startBtn {
 background-color: #2ecc71 !important;
 color: #ffffff !important;
@@ -203,4 +202,3 @@ text-align: center;
 }
 
 .hidden { display: none !important; }
-
