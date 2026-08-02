@@ -30,7 +30,7 @@ flex-direction: column;
 align-items: center;
 }
 
-/* الشعارين في الأعلى بحجم أكبر ومتناسق */
+/* الشعارين في الأعلى */
 .logos-header {
 display: flex;
 justify-content: space-between;
@@ -41,7 +41,7 @@ padding: 0 5px;
 }
 
 .header-logo {
-height: 90px; /* تم تكبير الارتفاع من 55px إلى 90px */
+height: 85px;
 width: auto;
 max-width: 48%;
 object-fit: contain;
@@ -160,7 +160,7 @@ font-size: 0.8rem;
 color: #7f8c8d;
 }
 
-/* الأزرار العريضة في الأسفل */
+/* أزرار التحكم */
 .controls {
 display: flex;
 gap: 10px;
@@ -192,6 +192,17 @@ background-color: #95a5a6 !important;
 color: #ffffff !important;
 }
 
+/* زر إنهاء الرحلة */
+.end-trip-wrapper {
+margin-top: 15px;
+width: 100%;
+}
+
+.btn-danger, #endBtn {
+background-color: #e74c3c !important;
+color: #ffffff !important;
+}
+
 /* الحقوق بالأسفل */
 .app-footer {
 margin-top: 25px;
@@ -202,3 +213,4 @@ text-align: center;
 }
 
 .hidden { display: none !important; }
+
