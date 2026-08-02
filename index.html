@@ -8,14 +8,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-
 <div class="main-wrapper">
 <div class="logos-header">
-<img src="logo1.png" alt="إدارة مدينة الملك عبدالعزيز العسكرية" class="header-logo">
-<img src="logo2.png" alt="برنامج المدن الصحية" class="header-logo">
+<img src="logo1.png" alt="شعار 1" class="header-logo">
+<img src="logo2.png" alt="شعار 2" class="header-logo">
 </div>
 
-<div id="welcomePage" class="screen-card">
+<div id="userCard" class="screen-card">
 <h2><i class="fa-solid fa-user-check"></i> مرحباً بك</h2>
 <p>يرجى إدخال بياناتك لبدء تتبع نشاطك البدني</p>
 
@@ -24,30 +23,35 @@
 <label>الاسم الكامل</label>
 <input type="text" id="userName" placeholder="أدخل اسمك" required>
 </div>
-
 <div class="input-group">
 <label>العمر</label>
-<input type="number" id="userAge" placeholder="أدخل عمرك" min="5" max="120" required>
+<input type="number" id="userAge" placeholder="أدخل عمرك" required>
 </div>
-
 <div class="input-group">
 <label>الجنس</label>
 <select id="userGender" required>
 <option value="" disabled selected>اختر الجنس</option>
-<option value="ذكر">ذكر</option>
-<option value="أنثى">أنثى</option>
+<option value="male">ذكر</option>
+<option value="female">أنثى</option>
 </select>
 </div>
-
+<div class="input-group">
+<label>هل أنت من سكان مدينة الملك عبدالعزيز العسكرية؟</label>
+<select id="userResident" required>
+<option value="" disabled selected>اختر الإجابة</option>
+<option value="yes">نعم</option>
+<option value="no">لا</option>
+</select>
+</div>
 <button type="submit" class="btn btn-primary btn-full">دخول وابدأ التتبع</button>
 </form>
 </div>
 
-<div id="appContainer" class="screen-card hidden">
+<div id="trackerCard" class="screen-card hidden">
 <header>
 <h1><i class="fa-solid fa-person-walking"></i> متعقب النشاط البدني</h1>
-<p id="welcomeMessage">تتبع خطواتك وسعراتك الحرارية بسهولة</p>
-<button id="editProfileBtn" class="btn-small"><i class="fa-solid fa-user-pen"></i> تعديل البيانات</button>
+<p id="welcomeMsg">مرحباً بك!</p>
+<button id="editUserBtn" class="btn-small"><i class="fa-solid fa-user-pen"></i> تعديل البيانات</button>
 </header>
 
 <main>
@@ -71,8 +75,18 @@
 </div>
 
 <div class="controls">
-<button id="startBtn" class="btn btn-primary"><i class="fa-solid fa-play"></i> بدء التتبع</button>
-<button id="resetBtn" class="btn btn-secondary"><i class="fa-solid fa-rotate-right"></i> إعادة ضبط</button>
+<button id="startBtn" class="btn btn-primary">
+<i class="fa-solid fa-play"></i> بدء التتبع
+</button>
+<button id="resetBtn" class="btn btn-secondary">
+<i class="fa-solid fa-rotate-left"></i> إعادة ضبط
+</button>
+</div>
+
+<div class="end-trip-wrapper">
+<button id="endBtn" class="btn btn-danger btn-full">
+<i class="fa-solid fa-flag-checkered"></i> إنهاء الرحلة
+</button>
 </div>
 </main>
 </div>
