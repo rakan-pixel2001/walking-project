@@ -1,216 +1,216 @@
 :root {
---primary-color: #2ecc71;
---secondary-color: #e74c3c;
---bg-color: #f4f7f6;
---card-bg: #ffffff;
---text-color: #2c3e50;
+    --primary-color: #2ecc71;
+    --secondary-color: #e74c3c;
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-color: #2c3e50;
 }
 
 * {
-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-background-color: var(--bg-color);
-color: var(--text-color);
-margin: 0;
-padding: 15px;
-display: flex;
-justify-content: center;
-align-items: flex-start;
-min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
 }
 
 .main-wrapper {
-width: 100%;
-max-width: 420px;
-display: flex;
-flex-direction: column;
-align-items: center;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* الشعارين في الأعلى */
+/* الشعارين في الأعلى بحجم كبير وواضح جداً */
 .logos-header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-width: 100%;
-margin-bottom: 20px;
-padding: 0 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 25px;
+    padding: 10px 0;
 }
 
 .header-logo {
-height: 85px;
-width: auto;
-max-width: 48%;
-object-fit: contain;
+    height: 120px !important;
+    width: auto !important;
+    max-width: 48% !important;
+    object-fit: contain;
+    filter: drop-shadow(0px 2px 5px rgba(0,0,0,0.05));
 }
 
 /* كروت الصفحات */
 .screen-card {
-background: var(--card-bg);
-border-radius: 20px;
-padding: 25px 20px;
-box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-width: 100%;
-text-align: center;
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 25px 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    width: 100%;
+    text-align: center;
 }
 
 .screen-card h2 {
-color: var(--text-color);
-margin-top: 0;
-margin-bottom: 5px;
-font-size: 1.4rem;
+    color: var(--text-color);
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 1.4rem;
 }
 
 .screen-card p {
-color: #7f8c8d;
-font-size: 0.88rem;
-margin-bottom: 20px;
+    color: #7f8c8d;
+    font-size: 0.88rem;
+    margin-bottom: 20px;
 }
 
 .input-group {
-text-align: right;
-margin-bottom: 15px;
+    text-align: right;
+    margin-bottom: 15px;
 }
 
 .input-group label {
-display: block;
-font-size: 0.85rem;
-font-weight: bold;
-margin-bottom: 5px;
-color: #34495e;
+    display: block;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #34495e;
 }
 
 .input-group input, .input-group select {
-width: 100%;
-padding: 12px;
-border: 1px solid #dfe6e9;
-border-radius: 10px;
-font-size: 0.95rem;
-outline: none;
-background: #f8f9fa;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dfe6e9;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    outline: none;
+    background: #f8f9fa;
 }
 
 .btn-full {
-width: 100%;
-margin-top: 10px;
+    width: 100%;
+    margin-top: 10px;
 }
 
 header h1 {
-font-size: 1.3rem;
-color: #2c3e50;
-margin: 5px 0;
+    font-size: 1.3rem;
+    color: #2c3e50;
+    margin: 5px 0;
 }
 
 .btn-small {
-background: transparent;
-border: 1px solid var(--primary-color);
-color: var(--primary-color);
-padding: 5px 14px;
-border-radius: 15px;
-cursor: pointer;
-font-size: 0.8rem;
-margin-bottom: 15px;
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 5px 14px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
 }
 
 .card {
-background: #f8f9fa;
-border-radius: 15px;
-padding: 18px;
-margin-bottom: 15px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 18px;
+    margin-bottom: 15px;
 }
 
 .step-display {
-font-size: 3.5rem;
-font-weight: bold;
-color: var(--primary-color);
-margin: 5px 0;
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 5px 0;
 }
 
 .stats-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
 }
 
 .stat-item {
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
 }
 
 .stat-item i {
-font-size: 1.4rem;
-margin-bottom: 5px;
+    font-size: 1.4rem;
+    margin-bottom: 5px;
 }
 
 .icon-fire { color: #e67e22; }
 .icon-route { color: #3498db; }
 
 .stat-value {
-font-size: 1.3rem;
-font-weight: bold;
+    font-size: 1.3rem;
+    font-weight: bold;
 }
 
 .stat-label {
-font-size: 0.8rem;
-color: #7f8c8d;
+    font-size: 0.8rem;
+    color: #7f8c8d;
 }
 
 /* أزرار التحكم */
 .controls {
-display: flex;
-gap: 10px;
-margin-top: 10px;
-width: 100%;
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100%;
 }
 
 .btn {
-flex: 1;
-padding: 14px;
-border: none;
-border-radius: 12px;
-font-size: 1rem;
-font-weight: bold;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 8px;
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .btn-primary, #startBtn {
-background-color: #2ecc71 !important;
-color: #ffffff !important;
+    background-color: #2ecc71 !important;
+    color: #ffffff !important;
 }
 
 .btn-secondary, #resetBtn {
-background-color: #95a5a6 !important;
-color: #ffffff !important;
+    background-color: #95a5a6 !important;
+    color: #ffffff !important;
 }
 
 /* زر إنهاء الرحلة */
 .end-trip-wrapper {
-margin-top: 15px;
-width: 100%;
+    margin-top: 15px;
+    width: 100%;
 }
 
 .btn-danger, #endBtn {
-background-color: #e74c3c !important;
-color: #ffffff !important;
+    background-color: #e74c3c !important;
+    color: #ffffff !important;
 }
 
 /* الحقوق بالأسفل */
 .app-footer {
-margin-top: 25px;
-font-size: 0.85rem;
-font-weight: 600;
-color: #7f8c8d;
-text-align: center;
+    margin-top: 25px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #7f8c8d;
+    text-align: center;
 }
 
 .hidden { display: none !important; }
-
