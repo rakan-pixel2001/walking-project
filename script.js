@@ -1,14 +1,14 @@
-// 1️⃣ إعدادات Firebase
+// 1️⃣ إعدادات Firebase الخاصة بك
 const firebaseConfig = {
-  apiKey: "AIzaSyD...",
+  apiKey: "ضع_API_KEY_الخاص_بك_هنا",
   authDomain: "wallking-project.firebaseapp.com",
   projectId: "wallking-project",
   storageBucket: "wallking-project.appspot.com",
-  messagingSenderId: "1098616124483",
-  appId: "1:1098616124483:web:96e8ba4686b24cb4d2ddc5"
+  messagingSenderId: "ضع_الرقم_هنا",
+  appId: "ضع_ID_التطبيق_هنا"
 };
 
-// تهيئة Firebase
+// تهيئة قاعدة البيانات
 if (typeof firebase !== 'undefined') {
     firebase.initializeApp(firebaseConfig);
     var db = firebase.firestore();
@@ -21,7 +21,7 @@ const threshold = 11;
 let currentUserId = null;
 let lastMilestone = 0;
 
-// العبارات التحفيزية لـ 2000 خطوة ومضاعفاتها
+// العبارات التحفيزية لكل 2,000 خطوة
 const motivationalMessages = [
     "بداية رائعة! أتممت 2,000 خطوة، واصل خطاك! 🏃‍♂️✨",
     "إنجاز مميز! وصلت إلى 4,000 خطوة، أنشط مما تتوقع! 🔥💪",
@@ -30,6 +30,7 @@ const motivationalMessages = [
     "مذهل! أتممت 10,000 خطوة وحققت الهدف اليومي بنجاح! 🎉🏆"
 ];
 
+// ربط العناصر
 const userCard = document.getElementById('userCard');
 const trackerCard = document.getElementById('trackerCard');
 const userForm = document.getElementById('userForm');
@@ -43,7 +44,7 @@ const startBtn = document.getElementById('startBtn');
 const resetBtn = document.getElementById('resetBtn');
 const endBtn = document.getElementById('endBtn');
 
-// حفظ البيانات في قاعدة البيانات عند التسجيل
+// حفظ البيانات في Firebase عند التسجيل
 userForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = document.getElementById('userName').value;
@@ -75,13 +76,13 @@ userForm.addEventListener('submit', async (e) => {
     }
 });
 
-// زر تعديل البيانات
+// تعديل البيانات
 editUserBtn.addEventListener('click', () => {
     trackerCard.classList.add('hidden');
     userCard.classList.remove('hidden');
 });
 
-// بدء / إيقاف التتبع
+// بدء وإيقاف التتبع
 startBtn.addEventListener('click', async () => {
     if (!isTracking) {
         if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
@@ -129,13 +130,13 @@ function handleMotion(event) {
     if (deltaX + deltaY + deltaZ > threshold) {
         stepCount++;
         updateDisplay();
-        checkMilestones(); // التثبت من العبارات التحفيزية
+        checkMilestones();
     }
 
     lastAcceleration = { x: acc.x, y: acc.y, z: acc.z };
 }
 
-// دالة فحص الـ 2000 خطوة
+// التنبيه التحفيزي كل 2,000 خطوة
 function checkMilestones() {
     if (stepCount >= 2000 && Math.floor(stepCount / 2000) > lastMilestone) {
         lastMilestone = Math.floor(stepCount / 2000);
@@ -157,13 +158,13 @@ resetBtn.addEventListener('click', () => {
     updateDisplay();
 });
 
-// إنهاء الرحلة وحفظ النتائج
+// إنهاء الرحلة وحفظ البيانات
 endBtn.addEventListener('click', async () => {
     stopTracking();
     const calories = Math.round(stepCount * 0.04);
     const distance = (stepCount * 0.0008).toFixed(2);
     
-    alert(`🎉 أحسنت! تم إنهاء الرحلة بنجاح.\n\n📊 الملخص:\n• الخطوات: ${stepCount}\n• السعرات: ${calories} سعرة\n• المسافة: ${distance} كم`);
+    alert(`🎉 أحسنت! تم إنهاء الرحلة بنجاح.\n\n📊 الملخص:\n• الخطوات: ${stepCount}\n• السعرات الحرارية: ${calories} سعرة\n• المسافة: ${distance} كم`);
     
     if (currentUserId && db) {
         try {
