@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متتبع الخطوات - المدن الصحية</title>
+    <title>برنامج المدن الصحية - متتبع الخطوات</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <!-- الترويسة والشعارات -->
         <header>
             <div class="logos">
-                <img src="city-logo.png" alt="شعار المدينة العسكرية" id="cityLogo">
-                <img src="healthy-logo.png" alt="شعار المدن الصحية" id="healthyLogo">
+                <img src="city-logo.png" alt="شعار المدينة العسكرية" onerror="this.style.display='none'">
+                <img src="healthy-logo.png" alt="شعار المدن الصحية" onerror="this.style.display='none'">
             </div>
             <h1>برنامج المدن الصحية</h1>
             <p class="subtitle">مدينة الملك عبدالعزيز العسكرية بتبوك</p>
         </header>
 
-        <!-- بطاقة تسجيل البيانات -->
         <div class="card" id="userCard">
             <h2><i class="fa-solid fa-user-plus"></i> تسجيل البيانات</h2>
+            <br>
             <form id="userForm">
                 <div class="form-group">
                     <label>الاسم الكامل</label>
@@ -53,7 +52,6 @@
             </form>
         </div>
 
-        <!-- بطاقة العداد والتتبع -->
         <div class="card hidden" id="trackerCard">
             <div class="user-welcome">
                 <h3 id="welcomeMsg">مرحباً بك</h3>
@@ -67,12 +65,12 @@
 
             <div class="stats-grid">
                 <div class="stat-item">
-                    <i class="fa-solid fa-fire text-danger"></i>
+                    <i class="fa-solid fa-fire" style="color:#e74c3c;"></i>
                     <span id="calories">0</span>
                     <small>سعرة حرارية</small>
                 </div>
                 <div class="stat-item">
-                    <i class="fa-solid fa-route text-primary"></i>
+                    <i class="fa-solid fa-route" style="color:#3498db;"></i>
                     <span id="distance">0.00</span>
                     <small>كم</small>
                 </div>
@@ -91,11 +89,10 @@
         </footer>
     </div>
 
-    <!-- مكتبات Firebase لتشغيل قاعدة البيانات -->
+    <!-- Firebase SDK Compat -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
-    <!-- ملف التشغيل -->
     <script src="script.js"></script>
 </body>
 </html>
