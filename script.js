@@ -1,4 +1,4 @@
-// 1️⃣ إعدادات Firebase الخاصة بك
+// إعدادات Firebase الخاصة بمشروعك
 const firebaseConfig = {
   apiKey: "ضع_API_KEY_الخاص_بك_هنا",
   authDomain: "wallking-project.firebaseapp.com",
@@ -8,10 +8,14 @@ const firebaseConfig = {
   appId: "ضع_ID_التطبيق_هنا"
 };
 
-// تهيئة قاعدة البيانات
-if (typeof firebase !== 'undefined') {
-    firebase.initializeApp(firebaseConfig);
-    var db = firebase.firestore();
+let db = null;
+try {
+    if (typeof firebase !== 'undefined') {
+        firebase.initializeApp(firebaseConfig);
+        db = firebase.firestore();
+    }
+} catch (e) {
+    console.log("Firebase not initialized yet");
 }
 
 let stepCount = 0;
@@ -21,7 +25,7 @@ const threshold = 11;
 let currentUserId = null;
 let lastMilestone = 0;
 
-// العبارات التحفيزية لكل 2,000 خطوة
+// رسائل تحفيزية كل 2,000 خطوة
 const motivationalMessages = [
     "بداية رائعة! أتممت 2,000 خطوة، واصل خطاك! 🏃‍♂️✨",
     "إنجاز مميز! وصلت إلى 4,000 خطوة، أنشط مما تتوقع! 🔥💪",
@@ -30,7 +34,6 @@ const motivationalMessages = [
     "مذهل! أتممت 10,000 خطوة وحققت الهدف اليومي بنجاح! 🎉🏆"
 ];
 
-// ربط العناصر
 const userCard = document.getElementById('userCard');
 const trackerCard = document.getElementById('trackerCard');
 const userForm = document.getElementById('userForm');
@@ -44,16 +47,23 @@ const startBtn = document.getElementById('startBtn');
 const resetBtn = document.getElementById('resetBtn');
 const endBtn = document.getElementById('endBtn');
 
-// حفظ البيانات في Firebase عند التسجيل
+// إرسال النموذج وتخزين البيانات في Firebase
 userForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+    
     const name = document.getElementById('userName').value;
     const age = document.getElementById('userAge').value;
-    const gender = document.getElementById('userGender').value;
-    const isResident = document.getElementById('userResident').value;
+    const gender = document.querySelector('input[name="userGender"]:checked')?.value || "ذكر";
+    const isResident = document.querySelector('input[name="userResident"]:checked')?.value || "نعم";
 
-    try {
-        if (db) {
+    // إخفاء بطاقة التسجيل وإظهار واجهة التتبع فوراً
+    welcomeMsg.textContent = `مرحباً بك يا ${name} 👋`;
+    userCard.classList.add('hidden');
+    trackerCard.classList.remove('hidden');
+
+    // حفظ المستند في Firebase
+    if (db) {
+        try {
             const docRef = await db.collection("users").add({
                 name: name,
                 age: Number(age),
@@ -64,25 +74,17 @@ userForm.addEventListener('submit', async (e) => {
                 totalTrips: 0
             });
             currentUserId = docRef.id;
+        } catch (error) {
+            console.error("خطأ في حفظ Firebase: ", error);
         }
-
-        welcomeMsg.textContent = `مرحباً بك يا ${name} 👋`;
-        userCard.classList.add('hidden');
-        trackerCard.classList.remove('hidden');
-    } catch (error) {
-        console.error("خطأ في حفظ البيانات: ", error);
-        userCard.classList.add('hidden');
-        trackerCard.classList.remove('hidden');
     }
 });
 
-// تعديل البيانات
 editUserBtn.addEventListener('click', () => {
     trackerCard.classList.add('hidden');
     userCard.classList.remove('hidden');
 });
 
-// بدء وإيقاف التتبع
 startBtn.addEventListener('click', async () => {
     if (!isTracking) {
         if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
@@ -94,7 +96,6 @@ startBtn.addEventListener('click', async () => {
                     alert('تم رفض الوصول لحساسات الحركة');
                 }
             } catch (error) {
-                console.error(error);
                 startTracking();
             }
         } else {
@@ -136,7 +137,6 @@ function handleMotion(event) {
     lastAcceleration = { x: acc.x, y: acc.y, z: acc.z };
 }
 
-// التنبيه التحفيزي كل 2,000 خطوة
 function checkMilestones() {
     if (stepCount >= 2000 && Math.floor(stepCount / 2000) > lastMilestone) {
         lastMilestone = Math.floor(stepCount / 2000);
@@ -158,7 +158,6 @@ resetBtn.addEventListener('click', () => {
     updateDisplay();
 });
 
-// إنهاء الرحلة وحفظ البيانات
 endBtn.addEventListener('click', async () => {
     stopTracking();
     const calories = Math.round(stepCount * 0.04);
@@ -182,7 +181,7 @@ endBtn.addEventListener('click', async () => {
                 date: firebase.firestore.FieldValue.serverTimestamp()
             });
         } catch (error) {
-            console.error("خطأ أثناء تحديث الرحلة: ", error);
+            console.error("خطأ حفظ الرحلة: ", error);
         }
     }
 
