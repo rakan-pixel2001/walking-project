@@ -9,15 +9,17 @@
 </head>
 <body>
     <div class="container">
+        <!-- الترويسة والشعارات -->
         <header>
             <div class="logos">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Saudi_Health_Ministry_Logo.svg/512px-Saudi_Health_Ministry_Logo.svg.png" alt="شعار المدن الصحية">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Emblem_of_Saudi_Arabia.svg/512px-Emblem_of_Saudi_Arabia.svg.png" alt="شعار المدينة العسكرية">
+                <img src="healthy-logo.png" alt="شعار المدن الصحية" onerror="this.style.display='none'">
+                <img src="city-logo.png" alt="شعار المدينة العسكرية" onerror="this.style.display='none'">
             </div>
             <h1>برنامج المدن الصحية</h1>
             <p class="subtitle">مدينة الملك عبدالعزيز العسكرية بتبوك</p>
         </header>
 
+        <!-- بطاقة تسجيل البيانات -->
         <div class="card" id="userCard">
             <h2><i class="fa-solid fa-user-plus"></i> تسجيل البيانات</h2>
             <br>
@@ -51,7 +53,7 @@
                             <input type="radio" name="userResident" value="نعم" checked> نعم
                         </label>
                         <label class="radio-option">
-                            <input type="radio" name="userResident" value="لا (زائر)"> لا
+                            <input type="radio" name="userResident" value="لا"> لا
                         </label>
                     </div>
                 </div>
@@ -60,6 +62,7 @@
             </form>
         </div>
 
+        <!-- بطاقة العداد والتتبع -->
         <div class="card hidden" id="trackerCard">
             <div class="user-welcome">
                 <h3 id="welcomeMsg">مرحباً بك</h3>
@@ -97,8 +100,10 @@
         </footer>
     </div>
 
+    <!-- مكتبات Firebase لتشغيل قاعدة البيانات -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
     <script src="script.js"></script>
 </body>
 </html>
