@@ -1,102 +1,101 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تطبيق تتبع الخطوات والنشاط البدني</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متتبع الخطوات - المدن الصحية</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-<div class="main-wrapper">
-<div class="logos-header">
-<img src="logo1.png" alt="شعار 1" class="header-logo">
-<img src="logo2.png" alt="شعار 2" class="header-logo">
-</div>
+    <div class="container">
+        <!-- الترويسة والشعارات -->
+        <header>
+            <div class="logos">
+                <img src="https://via.placeholder.com/80?text=City+Logo" alt="شعار المدينة العسكرية" id="cityLogo">
+                <img src="https://via.placeholder.com/80?text=Healthy+City" alt="شعار المدن الصحية" id="healthyLogo">
+            </div>
+            <h1>برنامج المدن الصحية</h1>
+            <p class="subtitle">مدينة الملك عبدالعزيز العسكرية بتبوك</p>
+        </header>
 
-<div id="userCard" class="screen-card">
-<h2><i class="fa-solid fa-user-check"></i> مرحباً بك</h2>
-<p>يرجى إدخال بياناتك لبدء تتبع نشاطك البدني</p>
+        <!-- بطاقة تسجيل البيانات -->
+        <div class="card" id="userCard">
+            <h2><i class="fa-solid fa-user-plus"></i> تسجيل البيانات</h2>
+            <form id="userForm">
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" id="userName" placeholder="أدخل اسمك الكريم" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>العمر</label>
+                    <input type="number" id="userAge" placeholder="أدخل عمرك" required>
+                </div>
 
-<form id="userForm">
-<div class="input-group">
-<label>الاسم الكامل</label>
-<input type="text" id="userName" placeholder="أدخل اسمك" required>
-</div>
-<div class="input-group">
-<label>العمر</label>
-<input type="number" id="userAge" placeholder="أدخل عمرك" required>
-</div>
-<div class="input-group">
-<label>الجنس</label>
-<select id="userGender" required>
-<option value="" disabled selected>اختر الجنس</option>
-<option value="male">ذكر</option>
-<option value="female">أنثى</option>
-</select>
-</div>
-<div class="input-group">
-<label>هل أنت من سكان مدينة الملك عبدالعزيز العسكرية؟</label>
-<select id="userResident" required>
-<option value="" disabled selected>اختر الإجابة</option>
-<option value="yes">نعم</option>
-<option value="no">لا</option>
-</select>
-</div>
-<button type="submit" class="btn btn-primary btn-full">دخول وابدأ التتبع</button>
-</form>
-</div>
+                <div class="form-group">
+                    <label>الجنس</label>
+                    <select id="userGender" required>
+                        <option value="ذكر">ذكر</option>
+                        <option value="أنثى">أنثى</option>
+                    </select>
+                </div>
 
-<div id="trackerCard" class="screen-card hidden">
-<header>
-<h1><i class="fa-solid fa-person-walking"></i> متعقب النشاط البدني</h1>
-<p id="welcomeMsg">مرحباً بك!</p>
-<button id="editUserBtn" class="btn-small"><i class="fa-solid fa-user-pen"></i> تعديل البيانات</button>
-</header>
+                <div class="form-group">
+                    <label>هل أنت من سكان مدينة الملك عبدالعزيز العسكرية؟</label>
+                    <select id="userResident" required>
+                        <option value="نعم">نعم</option>
+                        <option value="لا">لا (زائر)</option>
+                    </select>
+                </div>
 
-<main>
-<div class="card counter-card">
-<h2>عدد الخطوات</h2>
-<div class="step-display" id="stepCount">0</div>
-<p class="goal">الهدف اليومي: 10,000 خطوة</p>
-</div>
+                <button type="submit" class="btn btn-primary">دخول لبدء التتبع 🚀</button>
+            </form>
+        </div>
 
-<div class="stats-grid">
-<div class="card stat-item">
-<i class="fa-solid fa-fire icon-fire"></i>
-<span class="stat-value" id="calories">0</span>
-<span class="stat-label">سعرة حرارية</span>
-</div>
-<div class="card stat-item">
-<i class="fa-solid fa-route icon-route"></i>
-<span class="stat-value" id="distance">0</span>
-<span class="stat-label">كيلومتر</span>
-</div>
-</div>
+        <!-- بطاقة العداد والتتبع -->
+        <div class="card hidden" id="trackerCard">
+            <div class="user-welcome">
+                <h3 id="welcomeMsg">مرحباً بك</h3>
+                <button id="editUserBtn" class="btn-small"><i class="fa-solid fa-pen"></i> تعديل</button>
+            </div>
 
-<div class="controls">
-<button id="startBtn" class="btn btn-primary">
-<i class="fa-solid fa-play"></i> بدء التتبع
-</button>
-<button id="resetBtn" class="btn btn-secondary">
-<i class="fa-solid fa-rotate-left"></i> إعادة ضبط
-</button>
-</div>
+            <div class="counter-box">
+                <span class="step-label">عدد الخطوات</span>
+                <span id="stepCount" class="step-number">0</span>
+            </div>
 
-<div class="end-trip-wrapper">
-<button id="endBtn" class="btn btn-danger btn-full">
-<i class="fa-solid fa-flag-checkered"></i> إنهاء الرحلة
-</button>
-</div>
-</main>
-</div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <i class="fa-solid fa-fire text-danger"></i>
+                    <span id="calories">0</span>
+                    <small>سعرة حرارية</small>
+                </div>
+                <div class="stat-item">
+                    <i class="fa-solid fa-route text-primary"></i>
+                    <span id="distance">0.00</span>
+                    <small>كم</small>
+                </div>
+            </div>
 
-<footer class="app-footer">
-Made by Rakan Mohammed Nahar Alenzi
-</footer>
-</div>
+            <div class="controls">
+                <button id="startBtn" class="btn btn-success"><i class="fa-solid fa-play"></i> بدء التتبع</button>
+                <button id="resetBtn" class="btn btn-warning"><i class="fa-solid fa-rotate-left"></i> إعادة</button>
+                <button id="endBtn" class="btn btn-danger"><i class="fa-solid fa-flag-checkered"></i> إنهاء الرحلة</button>
+            </div>
+        </div>
 
-<script src="script.js"></script>
+        <footer>
+            <p>تطبيق متتبع الخطوات والنشاط البدني</p>
+            <p><small>إعداد وتطوير: راكان العنزي © 2026</small></p>
+        </footer>
+    </div>
+
+    <!-- مكتبات Firebase الأساسية -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <!-- ملف السكربت الخاص بك -->
+    <script src="script.js"></script>
 </body>
 </html>
-
