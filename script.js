@@ -1,9 +1,9 @@
 // 1️⃣ إعدادات Firebase
 const firebaseConfig = {
-  apiKey: "ضع_API_KEY_الخاص_بك_هنا",
-  authDomain: "healthy-city-app.firebaseapp.com",
-  projectId: "healthy-city-app",
-  storageBucket: "healthy-city-app.firebasestorage.app",
+  apiKey: "AIzaSyD...",
+  authDomain: "wallking-project.firebaseapp.com",
+  projectId: "wallking-project",
+  storageBucket: "wallking-project.appspot.com",
   messagingSenderId: "1098616124483",
   appId: "1:1098616124483:web:96e8ba4686b24cb4d2ddc5"
 };
