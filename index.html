@@ -11,8 +11,8 @@
     <div class="container">
         <header>
             <div class="logos">
-                <img src="city-logo.png" alt="شعار المدينة العسكرية" onerror="this.style.display='none'">
-                <img src="healthy-logo.png" alt="شعار المدن الصحية" onerror="this.style.display='none'">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Saudi_Health_Ministry_Logo.svg/512px-Saudi_Health_Ministry_Logo.svg.png" alt="شعار المدن الصحية">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Emblem_of_Saudi_Arabia.svg/512px-Emblem_of_Saudi_Arabia.svg.png" alt="شعار المدينة العسكرية">
             </div>
             <h1>برنامج المدن الصحية</h1>
             <p class="subtitle">مدينة الملك عبدالعزيز العسكرية بتبوك</p>
@@ -34,18 +34,26 @@
 
                 <div class="form-group">
                     <label>الجنس</label>
-                    <select id="userGender" required>
-                        <option value="ذكر">ذكر</option>
-                        <option value="أنثى">أنثى</option>
-                    </select>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="userGender" value="ذكر" checked> ذكر
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="userGender" value="أنثى"> أنثى
+                        </label>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label>هل أنت من سكان مدينة الملك عبدالعزيز العسكرية؟</label>
-                    <select id="userResident" required>
-                        <option value="نعم">نعم</option>
-                        <option value="لا">لا (زائر)</option>
-                    </select>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="userResident" value="نعم" checked> نعم
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="userResident" value="لا (زائر)"> لا
+                        </label>
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">دخول لبدء التتبع 🚀</button>
@@ -89,10 +97,8 @@
         </footer>
     </div>
 
-    <!-- Firebase SDK Compat -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-
     <script src="script.js"></script>
 </body>
 </html>
